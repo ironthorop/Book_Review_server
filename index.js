@@ -2,7 +2,6 @@ const express = require("express");
 const bookRoutes = require("./src/routes/BookRoutes.js");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
-const redisClient = require("./src/utils/redis.js");
 const dotenv = require("dotenv");
 
 dotenv.config();
