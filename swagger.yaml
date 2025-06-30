@@ -1,0 +1,131 @@
+openapi: 3.0.0
+info:
+  title: Book Review API
+  version: 1.0.0
+  description: A simple Book Review API with caching and MySQL backend.
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /books:
+    get:
+      summary: Get all books
+      tags:
+        - Books
+      responses:
+        '200':
+          description: A list of books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+    post:
+      summary: Create a new book
+      tags:
+        - Books
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookInput'
+      responses:
+        '201':
+          description: Book created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+
+  /books/{id}/reviews:
+    get:
+      summary: Get all reviews for a book
+      tags:
+        - Reviews
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+    post:
+      summary: Add a review to a book
+      tags:
+        - Reviews
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewInput'
+      responses:
+        '201':
+          description: Review added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        author:
+          type: string
+
+    BookInput:
+      type: object
+      required:
+        - title
+        - author
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+
+    Review:
+      type: object
+      properties:
+        id:
+          type: integer
+        content:
+          type: string
+        rating:
+          type: integer
+        bookId:
+          type: integer
+
+    ReviewInput:
+      type: object
+      required:
+        - content
+        - rating
+      properties:
+        content:
+          type: string
+        rating:
+          type: integer
