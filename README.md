@@ -44,3 +44,39 @@ Swagger docs: `http://localhost:3000/api-docs`
 ```sh
 npm test
 ```
+
+---
+
+## API Endpoints
+
+The API provides endpoints for managing books and reviews. For full details and to try out the endpoints, visit the [Swagger documentation](http://localhost:3000/api-docs).
+
+Example endpoints:
+- `GET /books` — List all books
+- `POST /books` — Create a new book
+- `GET /books/{id}/reviews` — List reviews for a book
+- `POST /books/{id}/reviews` — Add a review to a book
+
+---
+
+## Troubleshooting
+
+- **Database connection errors:** Ensure your MySQL server is running and the credentials in `.env` are correct.
+- **Redis connection errors:** Make sure Redis is running and the `REDIS_URL` is correct.
+- **Port already in use:** Change the `PORT` in your `.env` file or stop the process using the port.
+
+---
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a pull request
+
+---
+
+## License
+
+Specify your license here (e.g., MIT, Apache 2.0, etc.)
